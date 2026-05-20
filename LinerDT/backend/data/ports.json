@@ -1,0 +1,56 @@
+[
+  {
+    "id": "SHA", "name": "Shanghai", "country": "China",
+    "lat": 31.2304, "lon": 121.4737, "timezone": "Asia/Shanghai",
+    "berth_count": 4, "crane_count": 8, "handling_rate": 120,
+    "unlocode": "CNSHA"
+  },
+  {
+    "id": "NGB", "name": "Ningbo", "country": "China",
+    "lat": 29.8683, "lon": 121.544, "timezone": "Asia/Shanghai",
+    "berth_count": 3, "crane_count": 6, "handling_rate": 110,
+    "unlocode": "CNNGB"
+  },
+  {
+    "id": "XMN", "name": "Xiamen", "country": "China",
+    "lat": 24.4798, "lon": 118.0894, "timezone": "Asia/Shanghai",
+    "berth_count": 3, "crane_count": 5, "handling_rate": 100,
+    "unlocode": "CNXMN"
+  },
+  {
+    "id": "HKG", "name": "Hong Kong", "country": "China",
+    "lat": 22.3193, "lon": 114.1694, "timezone": "Asia/Hong_Kong",
+    "berth_count": 4, "crane_count": 10, "handling_rate": 130,
+    "unlocode": "HKHKG"
+  },
+  {
+    "id": "SZX", "name": "Yantian", "country": "China",
+    "lat": 22.5833, "lon": 114.2667, "timezone": "Asia/Shanghai",
+    "berth_count": 3, "crane_count": 6, "handling_rate": 115,
+    "unlocode": "CNYTN"
+  },
+  {
+    "id": "SIN", "name": "Singapore", "country": "Singapore",
+    "lat": 1.3521, "lon": 103.8198, "timezone": "Asia/Singapore",
+    "berth_count": 5, "crane_count": 12, "handling_rate": 140,
+    "unlocode": "SGSIN"
+  },
+  {
+    "id": "PIR", "name": "Piraeus", "country": "Greece",
+    "lat": 37.9475, "lon": 23.6424, "timezone": "Europe/Athens",
+    "berth_count": 3, "crane_count": 6, "handling_rate": 90,
+    "unlocode": "GRPIR"
+  },
+  {
+    "id": "RTM", "name": "Rotterdam", "country": "Netherlands",
+    "lat": 51.9225, "lon": 4.4792, "timezone": "Europe/Amsterdam",
+    "berth_count": 4, "crane_count": 10, "handling_rate": 125,
+    "unlocode": "NLRTM"
+  },
+  {
+    "id": "HAM", "name": "Hamburg", "country": "Germany",
+    "lat": 53.5511, "lon": 9.9937, "timezone": "Europe/Berlin",
+    "berth_count": 3, "crane_count": 8, "handling_rate": 110,
+    "unlocode": "DEHAM"
+  }
+]

@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .glass-panel {
+    background: rgba(10, 25, 47, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+  }
+
+  .glass-panel-light {
+    background: rgba(255, 255, 255, 0.04);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-marine-500 hover:bg-marine-600 text-white font-medium rounded text-sm;
+    @apply transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply shadow-lg shadow-marine-500/10;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 font-medium rounded text-sm;
+    @apply border border-white/10 hover:border-white/20 transition-all duration-200;
+    @apply active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 bg-transparent hover:bg-white/5 text-gray-400 font-medium rounded text-sm;
+    @apply transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-red-600/80 hover:bg-red-700 text-white font-medium rounded text-sm;
+    @apply transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-white text-sm;
+    @apply placeholder-gray-500 focus:outline-none focus:border-marine-500/50 focus:ring-1 focus:ring-marine-500/20;
+    @apply transition-all duration-200;
+  }
+
+  .panel-title {
+    @apply text-sm font-semibold text-marine-400 tracking-wide;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-medium rounded;
+  }
+
+  .badge-success {
+    @apply bg-green-500/15 text-green-400 border border-green-500/20;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-500/15 text-yellow-400 border border-yellow-500/20;
+  }
+
+  .badge-danger {
+    @apply bg-red-500/15 text-red-400 border border-red-500/20;
+  }
+
+  .badge-info {
+    @apply bg-blue-500/15 text-blue-400 border border-blue-500/20;
+  }
+
+  .stat-card {
+    @apply bg-white/[0.03] border border-white/[0.06] rounded p-3;
+  }
+
+  .divider {
+    @apply h-px bg-white/[0.06];
+  }
+
+  .data-grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #080f1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#cesium-container {
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.transition-panel {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.2s ease-out forwards; }
+.animate-fade-in-down { animation: fadeInDown 0.2s ease-out forwards; }
+.animate-fade-in-left { animation: fadeInLeft 0.2s ease-out forwards; }
+.animate-fade-in-right { animation: fadeInRight 0.2s ease-out forwards; }
+.animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+.animate-slide-in-right { animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+/* Leaflet tooltip styling */
+.port-tooltip, .ship-tooltip {
+  background: rgba(10, 25, 47, 0.9) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 4px !important;
+  color: #e2e8f0 !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+  box-shadow: none !important;
+}
+
+.port-tooltip::before, .ship-tooltip::before {
+  border-top-color: rgba(255,255,255,0.12) !important;
+}
+
+/* Leaflet popup */
+.leaflet-popup-content-wrapper {
+  background: rgba(10, 25, 47, 0.95) !important;
+  color: #e2e8f0 !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(10, 25, 47, 0.95) !important;
+}
+
+/* Override Leaflet default divIcon styles */
+.port-marker,
+.ship-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Ship icon rotation — handled via SVG transform */

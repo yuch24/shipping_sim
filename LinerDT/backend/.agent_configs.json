@@ -1,0 +1,146 @@
+[
+  {
+    "id": "balanced_agent",
+    "name": "多目标均衡代理",
+    "description": "综合考量延误、碳排放、燃油成本和港口效率，多目标均衡优化",
+    "category": "speed_optimization",
+    "enabled": true,
+    "decision_mode": "fast",
+    "system_prompt": "你是一个多目标均衡的航运AI调度员。你的核心目标是：\n1. 优先保证准班率，延误越严重越要积极赶班\n2. 控制碳排放，CII比率超过1.35时必须降速\n3. 在延误和碳排放之间寻找最佳平衡点\n4. 避免频繁调整航速（最少间隔24小时）\n\n决策原则：\n- 严重延误(>48h)：即使CII偏高也需适度提速\n- 中度延误(24-48h)：CII正常可提速，CII偏高则保持经济航速\n- 无延误但CII超标：降速减排\n- 提前到达：可适当减速节省燃油",
+    "tools": [
+      {
+        "tool_id": "get_cii_status",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "get_delay_info",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "get_port_queue_info",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "check_cooldown",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "calculate_optimal_speed",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "evaluate_tradeoff",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "adjust_speed",
+        "enabled": true,
+        "params": {}
+      }
+    ],
+    "parameters": {
+      "delay_weight": 0.4,
+      "cii_weight": 0.2,
+      "fuel_weight": 0.2,
+      "port_weight": 0.2,
+      "delay_critical": 48.0,
+      "delay_warning": 24.0,
+      "speed_boost_critical": 1.5,
+      "speed_boost_warning": 1.0,
+      "max_speed_pct": 0.92,
+      "cii_critical": 1.35,
+      "cii_warning": 1.15,
+      "tolerance_hours": 12.0,
+      "cooldown_hours": 24.0,
+      "cii_reduce_speed_pct": 0.95,
+      "eco_speed_over_economic": 1.0
+    }
+  },
+  {
+    "id": "rule_based_agent",
+    "name": "规则优先代理",
+    "description": "碳排放合规优先，延误容忍度低，严格按规则执行",
+    "category": "cii_protection",
+    "enabled": true,
+    "decision_mode": "fast",
+    "system_prompt": "你是一个规则优先的航运AI调度员。你的决策严格遵循以下优先级：\n1. 碳排放合规是第一位 — CII比率超过1.35(D级)时必须立即降速\n2. CII在1.15-1.35之间时，除非延误超过12小时否则优先降速\n3. 只有在CII安全(<1.15)时，才可全速赶班\n4. 航速不超过经济航速+1节，不超过设计航速的90%",
+    "tools": [
+      {
+        "tool_id": "get_cii_status",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "get_delay_info",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "check_cooldown",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "calculate_optimal_speed",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "adjust_speed",
+        "enabled": true,
+        "params": {}
+      }
+    ],
+    "parameters": {
+      "cii_critical": 1.35,
+      "cii_warning": 1.15,
+      "delay_tolerance_hours": 12.0,
+      "max_speed_over_economic": 1.0,
+      "cooldown_hours": 24.0,
+      "speed_change_min": 0.5
+    }
+  },
+  {
+    "id": "cii_agent",
+    "name": "CII 合规代理",
+    "description": "严格遵循IMO CII评级标准，优先保证碳排放合规",
+    "category": "cii_protection",
+    "enabled": true,
+    "decision_mode": "fast",
+    "system_prompt": "你是一个严格CII合规的航运AI调度员。你的唯一优先级是碳排放控制：\n1. 始终将CII评级维持在B级以上（CII比率<1.00）\n2. 当前CII评级低于目标时立即降速\n3. 降速幅度根据评级差距决定（每差一级降10%）\n4. 只有在CII完全合规的前提下才考虑准班率",
+    "tools": [
+      {
+        "tool_id": "get_cii_status",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "get_delay_info",
+        "enabled": false,
+        "params": {}
+      },
+      {
+        "tool_id": "calculate_optimal_speed",
+        "enabled": true,
+        "params": {}
+      },
+      {
+        "tool_id": "adjust_speed",
+        "enabled": true,
+        "params": {}
+      }
+    ],
+    "parameters": {
+      "cii_target_rating": 2.0,
+      "cii_reduce_per_rating": 0.1,
+      "cii_max_reduction": 0.25,
+      "design_speed_pct": 0.9
+    }
+  }
+]

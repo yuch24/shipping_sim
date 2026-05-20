@@ -1,0 +1,110 @@
+[
+  {
+    "id": "s001",
+    "name": "COSCO SHIPPING Universe",
+    "imo": "9865678",
+    "capacity_teu": 21237,
+    "design_speed": 22,
+    "economic_speed": 18,
+    "base_daily_consumption": 220,
+    "fuel_type": "LNG",
+    "load_factor": 0.85,
+    "initial_port": "SHA"
+  },
+  {
+    "id": "s002",
+    "name": "COSCO SHIPPING Stars",
+    "imo": "9865680",
+    "capacity_teu": 21237,
+    "design_speed": 22,
+    "economic_speed": 18,
+    "base_daily_consumption": 220,
+    "fuel_type": "VLSFO",
+    "load_factor": 0.82,
+    "initial_port": "NGB"
+  },
+  {
+    "id": "s003",
+    "name": "COSCO SHIPPING Galaxy",
+    "imo": "9865692",
+    "capacity_teu": 21237,
+    "design_speed": 22,
+    "economic_speed": 18,
+    "base_daily_consumption": 210,
+    "fuel_type": "VLSFO",
+    "load_factor": 0.78,
+    "initial_port": "XMN"
+  },
+  {
+    "id": "s004",
+    "name": "COSCO SHIPPING Planet",
+    "imo": "9865707",
+    "capacity_teu": 20170,
+    "design_speed": 21.5,
+    "economic_speed": 17,
+    "base_daily_consumption": 200,
+    "fuel_type": "VLSFO",
+    "load_factor": 0.80,
+    "initial_port": "HKG"
+  },
+  {
+    "id": "s005",
+    "name": "COSCO SHIPPING Cosmos",
+    "imo": "9865719",
+    "capacity_teu": 20170,
+    "design_speed": 21.5,
+    "economic_speed": 17,
+    "base_daily_consumption": 200,
+    "fuel_type": "LNG",
+    "load_factor": 0.75,
+    "initial_port": "SZX"
+  },
+  {
+    "id": "s006",
+    "name": "COSCO SHIPPING Solar",
+    "imo": "9865721",
+    "capacity_teu": 20170,
+    "design_speed": 22,
+    "economic_speed": 18,
+    "base_daily_consumption": 210,
+    "fuel_type": "VLSFO",
+    "load_factor": 0.88,
+    "initial_port": "SIN"
+  },
+  {
+    "id": "s007",
+    "name": "COSCO SHIPPING Lunar",
+    "imo": "9865733",
+    "capacity_teu": 21237,
+    "design_speed": 22,
+    "economic_speed": 18,
+    "base_daily_consumption": 220,
+    "fuel_type": "VLSFO",
+    "load_factor": 0.83,
+    "initial_port": "PIR"
+  },
+  {
+    "id": "s008",
+    "name": "COSCO SHIPPING Stellar",
+    "imo": "9865745",
+    "capacity_teu": 21237,
+    "design_speed": 22,
+    "economic_speed": 18,
+    "base_daily_consumption": 215,
+    "fuel_type": "LNG",
+    "load_factor": 0.80,
+    "initial_port": "RTM"
+  },
+  {
+    "id": "s009",
+    "name": "COSCO SHIPPING Horizon",
+    "imo": "9865757",
+    "capacity_teu": 20170,
+    "design_speed": 21.5,
+    "economic_speed": 17,
+    "base_daily_consumption": 200,
+    "fuel_type": "VLSFO",
+    "load_factor": 0.85,
+    "initial_port": "HAM"
+  }
+]

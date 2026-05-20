@@ -1,0 +1,17 @@
+FROM node:18-alpine AS base
+
+WORKDIR /app
+
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+
+COPY frontend/ .
+
+ARG NEXT_PUBLIC_CESIUM_ION_TOKEN
+ENV NEXT_PUBLIC_CESIUM_ION_TOKEN=$NEXT_PUBLIC_CESIUM_ION_TOKEN
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
