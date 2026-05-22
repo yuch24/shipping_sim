@@ -1,22 +1,22 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { Order, ROUTE_PORT_INFO } from '@/types/order'
-import { getOrdersForWeek, exportOrdersJSON, runGurobiOptimization } from '@/utils/shipLoading'
+import { getOrdersForWeek, exportOrdersJSON, isCyclicFeasible } from '@/utils/shipLoading'
 
 interface OrderManagerProps {
   orders: Order[]
   onOrdersChange: (orders: Order[]) => void
+  gurobiEnabled?: boolean
+  onToggleGurobi?: (v: boolean) => void
 }
 
-export default function OrderManager({ orders, onOrdersChange }: OrderManagerProps) {
+export default function OrderManager({ orders, onOrdersChange, gurobiEnabled, onToggleGurobi }: OrderManagerProps) {
   const [selectedRoute, setSelectedRoute] = useState('AEU1')
   const [selectedWeek, setSelectedWeek] = useState(1)
   const [showAddForm, setShowAddForm] = useState(false)
   const [editingOrder, setEditingOrder] = useState<Order | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
-  const [gurobiLoading, setGurobiLoading] = useState(false)
-  const [gurobiError, setGurobiError] = useState<string | null>(null)
 
   const routeInfo = ROUTE_PORT_INFO.find(r => r.routeID === selectedRoute)!
   const weekOrders = getOrdersForWeek(orders, selectedRoute, selectedWeek)
@@ -61,55 +61,29 @@ export default function OrderManager({ orders, onOrdersChange }: OrderManagerPro
     URL.revokeObjectURL(url)
   }
 
-  const handleGurobiOptimize = useCallback(async () => {
-    setGurobiLoading(true)
-    setGurobiError(null)
-    try {
-      const newOrders = await runGurobiOptimization(orders, selectedWeek)
-      onOrdersChange(newOrders)
-    } catch (e: any) {
-      setGurobiError(e.message || '优化失败')
-    } finally {
-      setGurobiLoading(false)
-    }
-  }, [orders, selectedWeek, onOrdersChange])
-
-  const getWeekDeadlineRange = (week: number) => {
-    const start = week * 168
-    const end = (week + 1) * 168
-    return { start, end }
-  }
-
   return (
     <div className="flex flex-col h-full bg-[#0a1929] text-white overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 shrink-0">
         <h2 className="text-sm font-semibold text-marine-400">订单管理</h2>
-        <div className="flex gap-1">
+        <div className="flex gap-1 items-center">
           <button onClick={handleExport} className="px-2 py-1 text-[10px] bg-marine-500/20 text-marine-400 hover:bg-marine-500/30 rounded transition-colors">
             导出JSON
           </button>
-          <button
-            onClick={handleGurobiOptimize}
-            disabled={gurobiLoading}
-            className={`px-2 py-1 text-[10px] rounded transition-colors font-medium ${
-              gurobiLoading
-                ? 'bg-yellow-500/20 text-yellow-400 cursor-wait'
-                : 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30'
-            }`}
-          >
-            {gurobiLoading ? '计算中...' : '启动Gurobi优化'}
-          </button>
+          {onToggleGurobi && (
+            <button
+              onClick={() => onToggleGurobi(!gurobiEnabled)}
+              className={`px-2 py-1 text-[10px] rounded transition-colors font-medium ${
+                gurobiEnabled
+                  ? 'bg-purple-500/30 text-purple-400 border border-purple-400/50'
+                  : 'bg-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300'
+              }`}
+            >
+              {gurobiEnabled ? 'Gurobi ON' : 'Gurobi OFF'}
+            </button>
+          )}
         </div>
       </div>
-
-      {/* Gurobi error */}
-      {gurobiError && (
-        <div className="px-3 py-1.5 text-[10px] bg-red-500/10 border-b border-red-500/20 text-red-400">
-          {gurobiError}
-          <button onClick={() => setGurobiError(null)} className="ml-2 text-red-500 hover:text-red-300">关闭</button>
-        </div>
-      )}
 
       {/* Route + Week tabs */}
       <div className="px-3 py-2 shrink-0 space-y-1.5">
@@ -164,7 +138,7 @@ export default function OrderManager({ orders, onOrdersChange }: OrderManagerPro
               <th className="py-1 text-left font-medium">起→终</th>
               <th className="py-1 text-right font-medium">TEU</th>
               <th className="py-1 text-right font-medium">$TEU</th>
-              <th className="py-1 text-right font-medium">截止</th>
+              <th className="py-1 text-right font-medium">时限</th>
               <th className="py-1 text-center font-medium">操作</th>
             </tr>
           </thead>
@@ -179,7 +153,9 @@ export default function OrderManager({ orders, onOrdersChange }: OrderManagerPro
               filteredOrders.map(o => {
                 const origName = routeInfo.portNames[o.originPort] || o.originPort
                 const destName = routeInfo.portNames[o.destPort] || o.destPort
-                const deadlineDays = Math.floor(o.deadline / 24)
+                const dlDays = Math.floor(o.deadline / 24)
+                const dlHours = o.deadline % 24
+                const dlStr = dlDays > 0 ? `${dlDays}d${dlHours}h` : `${o.deadline}h`
                 return (
                   <tr key={o.orderID} className="border-b border-white/5 hover:bg-white/[0.02]">
                     <td className="py-1.5 text-marine-400 font-mono">{o.orderID}</td>
@@ -190,7 +166,7 @@ export default function OrderManager({ orders, onOrdersChange }: OrderManagerPro
                     </td>
                     <td className="py-1.5 text-right font-mono text-gray-300">{o.volumeTEU}</td>
                     <td className="py-1.5 text-right font-mono text-emerald-400">${o.revenuePerTEU}</td>
-                    <td className="py-1.5 text-right font-mono text-gray-400">D{deadlineDays + 1}</td>
+                    <td className="py-1.5 text-right font-mono text-gray-400">{dlStr}</td>
                     <td className="py-1.5 text-center">
                       <button onClick={() => setEditingOrder(o)} className="px-1 text-gray-500 hover:text-blue-400 transition-colors">编辑</button>
                       <button onClick={() => handleDeleteOrder(o.orderID)} className="px-1 text-gray-500 hover:text-red-400 transition-colors">删除</button>
@@ -242,7 +218,7 @@ function OrderForm({ routeInfo, week, existingOrder, nextOrderID, onSave, onCanc
   const [destPort, setDestPort] = useState(existingOrder?.destPort || '')
   const [volumeTEU, setVolumeTEU] = useState(existingOrder?.volumeTEU || 500)
   const [revenuePerTEU, setRevenuePerTEU] = useState(existingOrder?.revenuePerTEU || 200)
-  const [deadline, setDeadline] = useState(existingOrder?.deadline || week * 168)
+  const [deadline, setDeadline] = useState(existingOrder?.deadline || 72)
   const [errors, setErrors] = useState<string[]>([])
 
   const validate = () => {
@@ -252,6 +228,7 @@ function OrderForm({ routeInfo, week, existingOrder, nextOrderID, onSave, onCanc
     if (originPort === destPort) errs.push('起运港与目的港不能相同')
     if (!routeInfo.ports.includes(originPort)) errs.push(`起运港不在${routeInfo.routeID}航线上`)
     if (!routeInfo.ports.includes(destPort)) errs.push(`目的港不在${routeInfo.routeID}航线上`)
+    if (originPort && destPort && !isCyclicFeasible(originPort, destPort, routeInfo.routeID)) errs.push('起运港→目的港在当前航线上不可达（需保证起运在目的之前）')
     if (volumeTEU <= 0) errs.push('TEU量必须大于0')
     if (revenuePerTEU <= 0) errs.push('每TEU收益必须大于0')
     setErrors(errs)
@@ -267,6 +244,7 @@ function OrderForm({ routeInfo, week, existingOrder, nextOrderID, onSave, onCanc
       volumeTEU,
       revenuePerTEU,
       routeID: routeInfo.routeID,
+      week,
       deadline,
     })
   }
@@ -322,10 +300,10 @@ function OrderForm({ routeInfo, week, existingOrder, nextOrderID, onSave, onCanc
         </div>
 
         <div>
-          <label className="text-[10px] text-gray-500 mb-1 block">截止时间 (小时)</label>
+          <label className="text-[10px] text-gray-500 mb-1 block">运送时限 (小时)</label>
           <input type="number" value={deadline} onChange={e => setDeadline(Number(e.target.value))}
-            className="w-full px-2 py-1.5 text-[10px] bg-white/5 border border-white/10 rounded text-gray-300 focus:outline-none focus:border-marine-400/50" />
-          <div className="text-[9px] text-gray-600 mt-0.5">第{week}周 ≈ {week * 168}h ~ {(week + 1) * 168}h</div>
+            className="w-full px-2 py-1.5 text-[10px] bg-white/5 border border-white/10 rounded text-gray-300 focus:outline-none focus:border-marine-400/50" min={1} />
+          <div className="text-[9px] text-gray-600 mt-0.5">从装船起算，超出此时限到达目的港即视为延误</div>
         </div>
       </div>
 

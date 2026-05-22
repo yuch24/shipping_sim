@@ -1,0 +1,484 @@
+﻿Origin,Unnamed: 1,Unnamed: 2,Destination,Unnamed: 4,Unnamed: 5,FFE/Week,Revenue/FFE(USD),TransitTime
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40
+BEANR,安特卫普,Antwerp,SGSIN,新加坡,Singapore,3,890,35
+BEZEE,泽布吕赫,Zeebrugge,CNDLC,大连,Dalian,4,820,40
+BEZEE,泽布吕赫,Zeebrugge,CNSHA,上海,Shanghai,7,720,45
+BEZEE,泽布吕赫,Zeebrugge,CNXMN,厦门,Xiamen,9,900,41
+BEZEE,泽布吕赫,Zeebrugge,CNYTN,盐田,Yantian,1,930,46
+BEZEE,泽布吕赫,Zeebrugge,SGSIN,新加坡,Singapore,5,930,44
+CNDLC,大连,Dalian,BEANR,安特卫普,Antwerp,1,2880,55
+CNDLC,大连,Dalian,DEHAM,汉堡,Hamburg,41,2900,55
+CNDLC,大连,Dalian,NLRTM,鹿特丹,Rotterdam,103,3000,51
+CNDLC,大连,Dalian,SGSIN,新加坡,Singapore,33,750,13
+CNSHA,上海,Shanghai,BEZEE,泽布吕赫,Zeebrugge,183,3120,49
+CNSHA,上海,Shanghai,DEHAM,汉堡,Hamburg,198,3140,53
+CNSHA,上海,Shanghai,FRDKK,敦刻尔克,Dunkirk,22,3150,49
+CNSHA,上海,Shanghai,FRLEH,勒阿弗尔,Le Havre,111,3160,43
+CNSHA,上海,Shanghai,GBFXT,费利克斯托,Felixstowe,464,3250,43
+CNSHA,上海,Shanghai,GBSOU,南安普顿,Southampton,149,3080,41
+CNSHA,上海,Shanghai,MAPTM,丹吉尔,Tangier,9,2730,45
+CNSHA,上海,Shanghai,MYPKG,巴生港,Port Klang,116,520,12
+CNSHA,上海,Shanghai,NLRTM,鹿特丹,Rotterdam,518,2960,42
+CNSHA,上海,Shanghai,SGSIN,新加坡,Singapore,29,500,8
+CNTAO,青岛,Qingdao,BEANR,安特卫普,Antwerp,2,3020,53
+CNTAO,青岛,Qingdao,BEZEE,泽布吕赫,Zeebrugge,15,3090,54
+CNTAO,青岛,Qingdao,DEHAM,汉堡,Hamburg,20,3040,52
+CNTAO,青岛,Qingdao,GBFXT,费利克斯托,Felixstowe,81,2980,45
+CNTAO,青岛,Qingdao,NLRTM,鹿特丹,Rotterdam,138,3050,48
+CNTAO,青岛,Qingdao,SGSIN,新加坡,Singapore,17,750,12
+CNXMN,厦门,Xiamen,BEZEE,泽布吕赫,Zeebrugge,15,3270,47
+CNXMN,厦门,Xiamen,GBFXT,费利克斯托,Felixstowe,50,3100,41
+CNXMN,厦门,Xiamen,SGSIN,新加坡,Singapore,28,420,8
+CNYTN,盐田,Yantian,BEZEE,泽布吕赫,Zeebrugge,186,3240,42
+CNYTN,盐田,Yantian,FRDKK,敦刻尔克,Dunkirk,29,3550,39
+CNYTN,盐田,Yantian,FRLEH,勒阿弗尔,Le Havre,128,3230,38
+CNYTN,盐田,Yantian,GBFXT,费利克斯托,Felixstowe,675,3290,38
+CNYTN,盐田,Yantian,GBSOU,南安普顿,Southampton,278,3120,47
+CNYTN,盐田,Yantian,MYPKG,巴生港,Port Klang,20,410,7
+CNYTN,盐田,Yantian,SGSIN,新加坡,Singapore,3,400,6
+DEHAM,汉堡,Hamburg,CNDLC,大连,Dalian,6,800,56
+DEHAM,汉堡,Hamburg,CNSHA,上海,Shanghai,51,710,50
+DEHAM,汉堡,Hamburg,SGSIN,新加坡,Singapore,13,950,41
+FRDKK,敦刻尔克,Dunkirk,CNSHA,上海,Shanghai,1,910,40
+FRLEH,勒阿弗尔,Le Havre,CNSHA,上海,Shanghai,16,780,46
+FRLEH,勒阿弗尔,Le Havre,MYPKG,巴生港,Port Klang,4,880,42
+FRLEH,勒阿弗尔,Le Havre,SGSIN,新加坡,Singapore,7,880,39
+GBFXT,费利克斯托,Felixstowe,CNSHA,上海,Shanghai,6,870,47
+GBFXT,费利克斯托,Felixstowe,CNTAO,青岛,Qingdao,21,920,51
+GBFXT,费利克斯托,Felixstowe,CNXMN,厦门,Xiamen,7,1100,42
+GBFXT,费利克斯托,Felixstowe,SGSIN,新加坡,Singapore,1,760,38
+GBSOU,南安普顿,Southampton,CNSHA,上海,Shanghai,56,920,42
+GBSOU,南安普顿,Southampton,MYPKG,巴生港,Port Klang,34,850,38
+GBSOU,南安普顿,Southampton,SGSIN,新加坡,Singapore,24,820,39
+MYPKG,巴生港,Port Klang,FRLEH,勒阿弗尔,Le Havre,3,2800,31
+MYPKG,巴生港,Port Klang,GBSOU,南安普顿,Southampton,4,2970,40
+MYPKG,巴生港,Port Klang,SGSIN,新加坡,Singapore,1,420,3
+NLRTM,鹿特丹,Rotterdam,CNDLC,大连,Dalian,122,830,49
+NLRTM,鹿特丹,Rotterdam,CNSHA,上海,Shanghai,152,740,44
+NLRTM,鹿特丹,Rotterdam,CNTAO,青岛,Qingdao,56,800,49
+NLRTM,鹿特丹,Rotterdam,SGSIN,新加坡,Singapore,116,960,34
+SGSIN,新加坡,Singapore,BEZEE,泽布吕赫,Zeebrugge,7,2590,44
+SGSIN,新加坡,Singapore,CNDLC,大连,Dalian,18,390,11
+SGSIN,新加坡,Singapore,CNSHA,上海,Shanghai,21,350,10
+SGSIN,新加坡,Singapore,CNTAO,青岛,Qingdao,8,370,11
+SGSIN,新加坡,Singapore,CNXMN,厦门,Xiamen,6,320,7
+SGSIN,新加坡,Singapore,CNYTN,盐田,Yantian,26,330,6
+SGSIN,新加坡,Singapore,DEHAM,汉堡,Hamburg,6,2710,48
+SGSIN,新加坡,Singapore,FRLEH,勒阿弗尔,Le Havre,3,2730,37
+SGSIN,新加坡,Singapore,GBFXT,费利克斯托,Felixstowe,14,2690,48
+SGSIN,新加坡,Singapore,GBSOU,南安普顿,Southampton,29,2820,39
+SGSIN,新加坡,Singapore,MYPKG,巴生港,Port Klang,13,390,4
+SGSIN,新加坡,Singapore,NLRTM,鹿特丹,Rotterdam,24,2740,40

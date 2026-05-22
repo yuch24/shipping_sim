@@ -5,6 +5,7 @@ export interface Order {
   revenuePerTEU: number
   volumeTEU: number
   routeID: string
+  week: number
   deadline: number
 }
 
@@ -44,6 +45,12 @@ export const ROUTE_PORT_INFO: RoutePortInfo[] = [
   },
 ]
 
+export const CYCLE_PORT_SEQUENCE: Record<string, string[]> = {
+  AEU1: ['CNTAO', 'CNSHA', 'CNNGB', 'CNXMN', 'CNYTN', 'SGSIN', 'GBFXT', 'BEZEE', 'PLGDY', 'DEWVN', 'SGSIN', 'CNYTN', 'CNTAO'],
+  AEU2: ['CNNGB', 'CNSHA', 'CNYTN', 'SGSIN', 'MAPTM', 'FRDKK', 'GBSOU', 'FRLEH', 'MYPKG', 'CNNGB'],
+  AEU3: ['CNTXG', 'CNDLC', 'CNTAO', 'CNSHA', 'CNNGB', 'SGSIN', 'NLRTM', 'DEHAM', 'BEANR', 'CNSHA', 'CNTXG'],
+}
+
 export interface ShipLoadState {
   shipID: string
   shipName: string
@@ -52,6 +59,8 @@ export interface ShipLoadState {
   currentLoadTEU: number
   maxCapacityTEU: number
   pickedOrders: Order[]
+  orderPickupTimes: Record<string, number>
+  delayedOrderIDs: string[]
   deliveredRevenue: number
   currentPort: string
   legHistory: LegRecord[]
@@ -71,4 +80,33 @@ export interface SimulationMetrics {
   averageUtilization: number
   globalDelayRate: number
   revenueTimeline: { time: number; revenue: number }[]
+  routeRevenue: Record<string, { total: number; average: number }>
+  totalAverageRevenue: number
+  routeRevenueTimeline: Record<string, { time: number; revenue: number }[]>
+}
+
+export interface PortBufferItem {
+  orderID: string
+  originPort: string
+  destPort: string
+  revenuePerTEU: number
+  volumeTEU: number
+  routeID: string
+  week: number
+  deadline: number
+  remainingTEU: number
+}
+
+export interface AllocationPlan {
+  orderID: string
+  targetRoute: string
+  targetAbsWeek: number
+  allocatedVolume: number
+  transitHours: number
+}
+
+export interface CommittedSlot {
+  routeID: string
+  absWeek: number
+  allocatedVolume: number
 }

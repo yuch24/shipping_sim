@@ -42,7 +42,6 @@ interface MapContainerProps {
   currentTime?: number
   isRunning?: boolean
   speed?: number
-  onSimTimeUpdate?: (simHours: number) => void
 }
 
 export default function MapContainer({
@@ -59,7 +58,6 @@ export default function MapContainer({
   currentTime = 0,
   isRunning = false,
   speed = 60,
-  onSimTimeUpdate,
 }: MapContainerProps) {
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -88,7 +86,6 @@ export default function MapContainer({
                 currentTime={currentTime}
                 isRunning={isRunning}
                 speed={speed}
-                onSimTimeUpdate={onSimTimeUpdate}
               />
             </div>
           </MapErrorBoundary>

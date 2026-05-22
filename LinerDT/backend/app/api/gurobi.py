@@ -1,14 +1,15 @@
 import asyncio
 import csv
 import os
-import subprocess
 import json
-
 import sys
+from typing import List, Optional, Dict, Any
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import List
+
+from ..services.transit_calculator import get_transit_calculator
+from ..services.gurobi_solver import solve_rolling
 
 router = APIRouter(prefix="/api/gurobi", tags=["gurobi"])
 
@@ -34,11 +35,25 @@ class OrderItem(BaseModel):
     volumeTEU: float
     routeID: str
     deadline: float
+    week: int = 1
 
 
 class UploadOrdersRequest(BaseModel):
     orders: List[OrderItem]
     week: int
+
+
+class CommittedSlot(BaseModel):
+    routeID: str
+    absWeek: int
+    allocatedVolume: float
+
+
+class RollingSolveRequest(BaseModel):
+    currentAbsWeek: int
+    newOrders: List[OrderItem]
+    committedSnapshot: Optional[List[CommittedSlot]] = None
+    horizonWeeks: int = 4
 
 
 @router.post("/upload-orders")
@@ -74,6 +89,42 @@ async def upload_orders(req: UploadOrdersRequest):
             )
 
     return {"status": "ok", "count": len(req.orders), "week": req.week}
+
+
+@router.post("/solve-rolling")
+async def solve_rolling_optimization(req: RollingSolveRequest):
+    tc = get_transit_calculator()
+
+    committed_list: List[Dict[str, Any]] = []
+    if req.committedSnapshot:
+        committed_list = [s.model_dump() for s in req.committedSnapshot]
+
+    new_orders = [o.model_dump() for o in req.newOrders]
+
+    try:
+        result = solve_rolling(
+            transit_calc=tc,
+            current_abs_week=req.currentAbsWeek,
+            new_orders=new_orders,
+            committed_snapshot=committed_list,
+            horizon=req.horizonWeeks,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Gurobi solver error: {e}")
+
+    if result.get("status") != "ok":
+        raise HTTPException(
+            status_code=500,
+            detail=f"Optimization failed (Gurobi status: {result.get('gurobi_status')})",
+        )
+
+    return {
+        "status": "ok",
+        "objective": result["objective"],
+        "allocationPlans": result["allocation_plans"],
+        "rejectedOrders": result.get("rejected_orders", []),
+        "currentAbsWeek": req.currentAbsWeek,
+    }
 
 
 @router.post("/solve")
@@ -143,6 +194,7 @@ async def solve_optimization(req: UploadOrdersRequest):
                     "volumeTEU": float(row["volumeTEU"]),
                     "routeID": row["routeID"],
                     "deadline": deadline_hours,
+                    "week": req.week,
                 }
             )
 

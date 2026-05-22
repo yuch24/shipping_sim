@@ -65,7 +65,6 @@ interface CesiumGlobeProps {
   onShipClick?: (shipId: string) => void
   onPortClick?: (portId: string) => void
   simulationMode?: string
-  onSimTimeUpdate?: (simHours: number) => void
 }
 
 const SHIP_COLORS: Record<string, string> = {
@@ -196,7 +195,6 @@ function buildRouteFromSequence(sequence: string[], coords: Record<string, [numb
 export default function CesiumGlobe({
   ships, ports, trajectories, currentTime = 0, isRunning = false, speed = 60,
   selectedShipId, onShipClick, onPortClick, simulationMode,
-  onSimTimeUpdate,
 }: CesiumGlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -210,6 +208,9 @@ export default function CesiumGlobe({
 
   const shipEntitiesRef = useRef<Map<string, any>>(new Map())
   const trajAppliedRef = useRef<Set<string>>(new Set())
+
+  const currentTimeRef = useRef(currentTime)
+  currentTimeRef.current = currentTime
 
   const handleShipClick = useCallback((shipId: string) => { onShipClick?.(shipId) }, [onShipClick])
   const handlePortClick = useCallback((portId: string) => { onPortClick?.(portId) }, [onPortClick])
@@ -259,6 +260,15 @@ export default function CesiumGlobe({
     })
     viewer.scene.pickPosition = false
     viewer.scene.pickTranslucentDepth = false
+
+    const epoch = Cesium.JulianDate.fromDate(new Date('2026-01-01T00:00:00Z'))
+    const simSeconds = currentTimeRef.current * 3600
+    const simDate = Cesium.JulianDate.addSeconds(epoch, simSeconds, new Cesium.JulianDate())
+    viewer.clock.startTime = epoch.clone()
+    viewer.clock.currentTime = simDate.clone()
+    viewer.clock.clockRange = Cesium.ClockRange.UNBOUNDED
+    viewer.clock.shouldAnimate = false
+
     viewerRef.current = viewer
 
     return () => {
@@ -333,7 +343,7 @@ export default function CesiumGlobe({
       }
 
       const positionProperty = new Cesium.SampledPositionProperty()
-      const epoch = Cesium.JulianDate.fromDate(new Date('2024-01-01T00:00:00Z'))
+      const epoch = Cesium.JulianDate.fromDate(new Date('2026-01-01T00:00:00Z'))
 
       for (const wp of traj.waypoints) {
         const wpDate = Cesium.JulianDate.addSeconds(epoch, wp.t * 3600, new Cesium.JulianDate())
@@ -385,8 +395,16 @@ export default function CesiumGlobe({
   }, [trajectories, cesiumReady])
 
   // ---- Virtual clock → Cesium Clock sync ----
-  // Cesium is the sole time driver. Backend provides state data only.
-  // clock.currentTime is set once on init/reset, then Cesium advances autonomously.
+  //
+  // On first mount / remount (e.g. switching tabs), restore the clock to the
+  // saved simulation time so the animation continues where it left off.
+  //
+  const clockRestoredRef = useRef(false)
+
+  useEffect(() => {
+    if (cesiumReady) clockRestoredRef.current = false
+  }, [cesiumReady])
+
   useEffect(() => {
     if (!viewerRef.current || typeof window === 'undefined' || !window.Cesium) return
     if (!cesiumReady) return
@@ -394,21 +412,21 @@ export default function CesiumGlobe({
     const Cesium = window.Cesium
     const viewer = viewerRef.current
     const clock = viewer.clock
+    const epoch = Cesium.JulianDate.fromDate(new Date('2026-01-01T00:00:00Z'))
 
-    const epoch = Cesium.JulianDate.fromDate(new Date('2024-01-01T00:00:00Z'))
-
-    if (!isRunning && currentTime === 0) {
-      Cesium.JulianDate.clone(epoch, clock.currentTime)
-      Cesium.JulianDate.clone(epoch, clock.startTime)
+    if (!clockRestoredRef.current) {
       clock.shouldAnimate = false
-      if (onSimTimeUpdate) onSimTimeUpdate(0)
-      return
+      const simSeconds = currentTime * 3600
+      const simDate = Cesium.JulianDate.addSeconds(epoch, simSeconds, new Cesium.JulianDate())
+      Cesium.JulianDate.clone(simDate, clock.currentTime)
+      Cesium.JulianDate.clone(epoch, clock.startTime)
+      clock.clockRange = Cesium.ClockRange.UNBOUNDED
+      clockRestoredRef.current = true
     }
 
     if (isRunning) {
       clock.multiplier = speed
       clock.shouldAnimate = true
-      clock.clockRange = Cesium.ClockRange.UNBOUNDED
     } else {
       clock.shouldAnimate = false
     }
@@ -556,20 +574,16 @@ export default function CesiumGlobe({
     return () => clearInterval(interval)
   }, [])
 
-  // ---- Route glow dots animation + sim time reporting ----
+  // ---- Route glow dots animation ----
   useEffect(() => {
     if (!cesiumReady || !viewerRef.current) return
 
-    const Cesium = window.Cesium
-    const viewer = viewerRef.current
     let animTime = 0
-    const epoch = Cesium.JulianDate.fromDate(new Date('2024-01-01T00:00:00Z'))
 
     function animate() {
       animFrameRef.current = requestAnimationFrame(animate)
       animTime += 0.008
 
-      // Route glow dots
       const rp = routePositionsRef.current
       if (rp.length && routeDotsRef.current.length) {
         const totalSegs = (rp.length / 2) - 1
@@ -584,20 +598,11 @@ export default function CesiumGlobe({
           dot.position = Cesium.Cartesian3.fromDegrees(lon, lat)
         })
       }
-
-      // Report sim time from Cesium clock
-      if (onSimTimeUpdate && viewer.clock) {
-        const diff = Cesium.JulianDate.secondsDifference(viewer.clock.currentTime, epoch)
-        const simHours = diff / 3600.0
-        if (simHours >= 0) {
-          onSimTimeUpdate(simHours)
-        }
-      }
     }
 
     animate()
     return () => cancelAnimationFrame(animFrameRef.current)
-  }, [cesiumReady, onSimTimeUpdate])
+  }, [cesiumReady])
 
   const isRealTime = simulationMode === 'real_time'
   const debugPorts = Object.entries(PORT_COORDS)

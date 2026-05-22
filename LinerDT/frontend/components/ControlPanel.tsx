@@ -90,7 +90,7 @@ export default function ControlPanel({
   }
 
   const formatSimDate = (hours: number): string => {
-    const baseDate = new Date(2024, 0, 1)
+    const baseDate = new Date(2026, 0, 1)
     const totalMs = hours * 3600 * 1000
     const simDate = new Date(baseDate.getTime() + totalMs)
     return simDate.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })

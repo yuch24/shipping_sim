@@ -1,0 +1,29 @@
+{
+  "fcfs_total": 1063006025,
+  "theory_max": 1210497150,
+  "fcfs_loss": 147491125,
+  "fcfs_loss_pct": 12.2,
+  "gurobi_estimated": 1173624369,
+  "gurobi_recovery": 95869231,
+  "routes": {
+    "AEU1": {
+      "fcfs_revenue": 489199245,
+      "max_revenue": 581212490,
+      "loss": 92013245,
+      "utilization_pct": 119.3
+    },
+    "AEU2": {
+      "fcfs_revenue": 273752530,
+      "max_revenue": 273752530,
+      "loss": 0,
+      "utilization_pct": 95.3
+    },
+    "AEU3": {
+      "fcfs_revenue": 300054250,
+      "max_revenue": 355532130,
+      "loss": 55477880,
+      "utilization_pct": 120.9
+    }
+  },
+  "chart_note": "Open fcfs_comparison.csv in Excel. Select data, Insert -> Chart -> Bar chart for revenue comparison."
+}

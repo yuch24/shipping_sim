@@ -20,11 +20,11 @@ import FullScreenDetailView from '@/components/FullScreenDetailView'
 import { useWebSocket, SimState, ShipTrajectoryData } from '@/hooks/useWebSocket'
 import ReactECharts from 'echarts-for-react'
 import type { TrendDataPoint, KpiData, AIDecision, ShipData, PortData } from '@/types/simulation'
-import type { Order } from '@/types/order'
+import type { Order, ShipLoadState, AllocationPlan, CommittedSlot } from '@/types/order'
 import { ROUTE_PORT_INFO } from '@/types/order'
 import OrderManager from '@/components/OrderManager'
 import SimAnalysisPanel from '@/components/dashboard/SimAnalysisPanel'
-import { computeShipLoadStates, computeSimulationMetrics } from '@/utils/shipLoading'
+import { computeShipLoadStates, computeSimulationMetrics, runRollingOptimization } from '@/utils/shipLoading'
 
 // IDE 布局组件
 import AppShell from '@/components/ide/AppShell'
@@ -320,8 +320,6 @@ function MonitorView({
   onViewDetail,
   onStart,
   trajectories,
-  cesiumSimTime,
-  onSimTimeUpdate,
   shipLoadStates,
 }: {
   displayState: SimState | null
@@ -336,8 +334,6 @@ function MonitorView({
   onViewDetail?: (type: string, id: string) => void
   onStart?: () => void
   trajectories?: Record<string, ShipTrajectoryData> | null
-  cesiumSimTime?: number
-  onSimTimeUpdate?: (simHours: number) => void
   shipLoadStates?: any[]
 }) {
   const [simStarted, setSimStarted] = useState(false)
@@ -380,7 +376,6 @@ function MonitorView({
         currentTime={currentTime}
         isRunning={displayState?.is_running ?? false}
         speed={displayState?.speed ?? 60}
-        onSimTimeUpdate={onSimTimeUpdate}
       />
 
       {/* 选中船舶详情 */}
@@ -561,6 +556,9 @@ function AnalysisView({ displayState, ships, simMetrics, shipLoadStates }: { dis
           averageUtilization={simMetrics.averageUtilization}
           globalDelayRate={simMetrics.globalDelayRate}
           revenueTimeline={simMetrics.revenueTimeline}
+          routeRevenue={simMetrics.routeRevenue}
+          totalAverageRevenue={simMetrics.totalAverageRevenue}
+          routeRevenueTimeline={simMetrics.routeRevenueTimeline}
           shipCount={shipLoadStates?.length ?? ships.length}
         />
       ) : (
@@ -588,7 +586,18 @@ export default function HomePage() {
   const [orders, setOrders] = useState<Order[]>(() => {
     try {
       const saved = typeof window !== 'undefined' && localStorage.getItem('shipping_orders_week1')
-      if (saved) return JSON.parse(saved) as Order[]
+      if (saved) {
+        const raw = JSON.parse(saved)
+        const migrated = raw.map((o: any) => {
+          if (o.week !== undefined) return o as Order
+          const oldWeek = Math.floor(o.deadline / 168)
+          return { ...o, week: oldWeek, deadline: 72 } as Order
+        })
+        if (migrated.some((o: Order, i: number) => (raw[i] as any).week === undefined)) {
+          localStorage.setItem('shipping_orders_week1', JSON.stringify(migrated))
+        }
+        return migrated
+      }
     } catch {}
     return []
   })
@@ -649,11 +658,31 @@ export default function HomePage() {
   } = useWebSocket(handleStateChange)
 
   const [localSpeed, setLocalSpeed] = useState(60)
-  const [cesiumSimTime, setCesiumSimTime] = useState(0)
+  const [simTime, setSimTime] = useState(0)
 
-  const handleSimTimeUpdate = useCallback((simHours: number) => {
-    setCesiumSimTime(simHours)
-  }, [])
+  const revenueTimelineRef = useRef<{ time: number; revenue: number }[]>([])
+  const routeTimelineRef = useRef<Record<string, { time: number; revenue: number }[]>>({})
+  const portBufferRef = useRef<Record<string, any[]>>({})
+  const lastSimHourRef = useRef(-1)
+  const lastAbsWeekRef = useRef(-1)
+  const cachedShipLoadStatesRef = useRef<ShipLoadState[]>([])
+  const [allocationPlans, setAllocationPlans] = useState<AllocationPlan[]>([])
+  const committedRef = useRef<CommittedSlot[]>([])
+  const [gurobiEnabled, setGurobiEnabled] = useState(false)
+
+  const handleReset = useCallback(() => {
+    setSimTime(0)
+    revenueTimelineRef.current = []
+    routeTimelineRef.current = {}
+    portBufferRef.current = {}
+    lastSimHourRef.current = -1
+    lastAbsWeekRef.current = -1
+    cachedShipLoadStatesRef.current = []
+    setAllocationPlans([])
+    committedRef.current = []
+    setGurobiEnabled(false)
+    reset()
+  }, [reset])
 
   const handleSetMode = useCallback((mode: string) => {
     setSimulationMode(mode)
@@ -681,9 +710,78 @@ export default function HomePage() {
   const speed = localSpeed
   const aisSourceMode = displayState?.ais_source_mode ?? 'mock'
 
-  const simTimeForMetrics = cesiumSimTime > 0 ? cesiumSimTime : currentTime
-  const shipLoadStates = computeShipLoadStates(orders, simTimeForMetrics)
+  useEffect(() => {
+    if (!isRunning) return
+    const intervalMs = 100
+    const simHoursPerTick = (speed * intervalMs) / 3_600_000
+    const id = setInterval(() => {
+      setSimTime(t => t + simHoursPerTick)
+    }, intervalMs)
+    return () => clearInterval(id)
+  }, [isRunning, speed])
+
+  const simTimeForMetrics = simTime > 0 ? simTime : currentTime
+
+  const currentSimHour = Math.floor(simTimeForMetrics)
+  // Gurobi rolling optimization trigger — fires on week boundary
+  const currentAbsWeek = Math.floor(simTimeForMetrics / 168)
+  if (currentAbsWeek !== lastAbsWeekRef.current && orders.length > 0 && gurobiEnabled) {
+    lastAbsWeekRef.current = currentAbsWeek
+    const weekOrders = orders.filter(o => o.week === (currentAbsWeek % 15 || 15))
+    if (weekOrders.length > 0) {
+      runRollingOptimization(currentAbsWeek, weekOrders, committedRef.current, 4)
+        .then(result => {
+          setAllocationPlans(prev => [...prev, ...result.allocationPlans])
+          for (const p of result.allocationPlans) {
+            const existing = committedRef.current.find(
+              c => c.routeID === p.targetRoute && c.absWeek === p.targetAbsWeek
+            )
+            if (existing) {
+              existing.allocatedVolume += p.allocatedVolume
+            } else {
+              committedRef.current.push({
+                routeID: p.targetRoute,
+                absWeek: p.targetAbsWeek,
+                allocatedVolume: p.allocatedVolume,
+              })
+            }
+          }
+        })
+        .catch(e => console.warn('Gurobi rolling optimize failed:', e))
+    }
+  }
+
+  if (currentSimHour !== lastSimHourRef.current) {
+    const result = computeShipLoadStates(orders, simTimeForMetrics, portBufferRef.current, allocationPlans)
+    cachedShipLoadStatesRef.current = result.states
+    portBufferRef.current = result.portBuffer
+    lastSimHourRef.current = currentSimHour
+  }
+  const shipLoadStates = cachedShipLoadStatesRef.current
   const simMetrics = computeSimulationMetrics(orders, shipLoadStates, simTimeForMetrics)
+
+  if (simMetrics && simTimeForMetrics > 0) {
+    const MIN_PUSH_INTERVAL_HOURS = 1
+    const prevTotal = revenueTimelineRef.current
+    if (prevTotal.length === 0 || prevTotal[prevTotal.length - 1].time + MIN_PUSH_INTERVAL_HOURS <= simTimeForMetrics) {
+      prevTotal.push({ time: simTimeForMetrics, revenue: simMetrics.totalRevenue })
+    }
+    for (const rid of ['AEU1', 'AEU2', 'AEU3'] as const) {
+      if (!routeTimelineRef.current[rid]) routeTimelineRef.current[rid] = []
+      const arr = routeTimelineRef.current[rid]
+      if (arr.length === 0 || arr[arr.length - 1].time + MIN_PUSH_INTERVAL_HOURS <= simTimeForMetrics) {
+        arr.push({ time: simTimeForMetrics, revenue: simMetrics.routeRevenue[rid]?.total ?? 0 })
+      }
+    }
+  }
+
+  const accumulatedMetrics = {
+    ...simMetrics,
+    revenueTimeline: [...revenueTimelineRef.current],
+    routeRevenueTimeline: Object.fromEntries(
+      Object.entries(routeTimelineRef.current).map(([k, v]) => [k, [...v]])
+    ),
+  }
 
   const handleNavigate = (targetType: string, targetId: string) => {
     if (targetType === 'ship') {
@@ -738,7 +836,7 @@ export default function HomePage() {
               connected={connected}
               isRunning={isRunning}
               speed={speed}
-              onReset={reset}
+              onReset={handleReset}
               onApplyConfig={async (config) => {
                 const res = await fetch('/api/sim/config', {
                   method: 'POST',
@@ -761,7 +859,7 @@ export default function HomePage() {
             <OrderManager orders={orders} onOrdersChange={(newOrders) => {
               setOrders(newOrders);
               try { localStorage.setItem('shipping_orders_week1', JSON.stringify(newOrders)) } catch {}
-            }} />
+            }} gurobiEnabled={gurobiEnabled} onToggleGurobi={setGurobiEnabled} />
           ),
         }}
         // 工作区标签页
@@ -781,15 +879,13 @@ export default function HomePage() {
                 setSelectedShip={setSelectedShip}
                 selectedPort={selectedPort}
                 setSelectedPort={setSelectedPort}
-currentTime={cesiumSimTime > 0 ? cesiumSimTime : currentTime}
-        ships={ships}
+                currentTime={simTime > 0 ? simTime : currentTime}
+                ships={ships}
                 simulationMode={simulationMode}
                 mapType={mapType}
                 trajectories={trajectories}
                 onViewDetail={(type, id) => setFullScreenView({ type: type as 'ship' | 'port', id })}
                 onStart={handleStart}
-                cesiumSimTime={cesiumSimTime}
-                onSimTimeUpdate={handleSimTimeUpdate}
                 shipLoadStates={shipLoadStates}
               />
             ),
@@ -802,7 +898,7 @@ currentTime={cesiumSimTime > 0 ? cesiumSimTime : currentTime}
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             ),
-            component: <AnalysisView displayState={displayState} ships={ships} simMetrics={simMetrics} shipLoadStates={shipLoadStates} />,
+            component: <AnalysisView displayState={displayState} ships={ships} simMetrics={accumulatedMetrics} shipLoadStates={shipLoadStates} />,
           },
           {
             id: 'teaching',
@@ -836,12 +932,12 @@ currentTime={cesiumSimTime > 0 ? cesiumSimTime : currentTime}
         headerCenter={
           <ControlPanel
             isRunning={isRunning}
-            currentTime={cesiumSimTime > 0 ? cesiumSimTime : currentTime}
+            currentTime={simTime > 0 ? simTime : currentTime}
             speed={speed}
             simulationMode={simulationMode}
             onStart={handleStart}
             onPause={pause}
-            onReset={reset}
+            onReset={handleReset}
             onSpeedChange={handleSpeedChange}
             mapType={mapType}
             onMapTypeChange={setMapType}

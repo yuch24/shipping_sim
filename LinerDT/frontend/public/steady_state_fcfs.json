@@ -1,0 +1,21 @@
+{
+  "fcfs_total": 1210497150.0,
+  "theory_max": 1210497150.0,
+  "fcfs_loss": 0.0,
+  "fcfs_loss_pct": 0.0,
+  "routes": {
+    "AEU1": {
+      "revenue": 581212490.0,
+      "delay_rate": 94.0536013400335
+    },
+    "AEU2": {
+      "revenue": 273752530.0,
+      "delay_rate": 97.75551102204409
+    },
+    "AEU3": {
+      "revenue": 355532130.0,
+      "delay_rate": 100.0
+    }
+  },
+  "note": "Gurobi rolling mode requires live backend with gurobipy. Install gurobipy + matplotlib to run full comparison."
+}
